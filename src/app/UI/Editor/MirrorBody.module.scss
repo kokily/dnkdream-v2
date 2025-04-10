@@ -1,0 +1,45 @@
+.markdown {
+    height: auto;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    .cm-header {
+        line-height: 2;
+        color: blue;
+      }
+      .cm-header-1 {
+        font-size: 2.5rem;
+      }
+      .cm-header-2 {
+        font-size: 2rem;
+      }
+      .cm-header-3 {
+        font-size: 1.5rem;
+      }
+      .cm-header-4,
+      .cm-header-5,
+      .cm-header-6 {
+        font-size: 1.3125rem;
+      }
+      .cm-strong,
+      .cm-em {
+        color: blue;
+      }
+      .CodeMirror-placeholder {
+        color: silver;
+        font-style: italic;
+      }
+}
+
+.preview {
+  font-size: 1.125rem;
+  line-height: 1.5;
+
+  code {
+    padding: 3px 6px;
+    border: none;
+    border-radius: 3px;
+    background-color: #e9ecef;
+    font-size: 1.6rem;
+    font-family: "Pretendard", "Malgun Gothic", sans-serif;
+  }
+}
