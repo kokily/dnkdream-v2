@@ -1,0 +1,76 @@
+.provider {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 0.5;
+  overflow-y: scroll;
+
+  .under {
+    background: rgb(73, 80, 87);
+    height: 6px;
+    width: 4rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 1px;
+    margin-left: 0;
+    border: 0;
+  }
+}
+
+.editor_head {
+  top: 0;
+  position: sticky;
+  background-color: rgb(26, 26, 26);
+  z-index: 50;
+}
+
+.editor_body {
+  background-color: transparent;
+}
+
+.markdown {
+  height: auto;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  background-color: transparent;
+
+  div {
+    background-color: transparent;
+    color: white;
+    height: auto;
+  }
+
+  .cm-header {
+    line-height: 2;
+    color: blue;
+  }
+
+  .cm-header-1 {
+    font-size: 2.5rem;
+  }
+
+  .cm-header-2 {
+    font-size: 2rem;
+  }
+
+  .cm-header-3 {
+    font-size: 1.5rem;
+  }
+
+  .cm-header-4,
+  .cm-header-5,
+  .cm-header-6 {
+    font-size: 1.3125rem;
+  }
+
+  .cm-strong,
+  .cm-em {
+    color: blue;
+  }
+
+  .CodeMirror-placeholder {
+    color: silver;
+    font-style: italic;
+  }
+}

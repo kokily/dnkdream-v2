@@ -1,0 +1,49 @@
+.preview_body {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  overflow-y: auto;
+  word-break: break-word;
+
+  h1 {
+    line-height: 1.5;
+    color: rgb(58, 210, 156);
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 3rem;
+    color: rgb(114, 189, 178);
+  }
+
+  strong,
+  em {
+    color: rgb(33, 187, 187);
+  }
+
+  code {
+    padding: 3px 6px;
+    border: none;
+    border-radius: 3px;
+    background-color: #e9ecef;
+    font-size: 1.6rem;
+    font-family: "Pretendard", "Malgun Gothic", sans-serif;
+  }
+
+  a {
+    font-weight: bold;
+    color: #98c379 !important;
+    text-decoration: none;
+  }
+
+  blockquote {
+    margin: 2rem 0px;
+    border-left: 4px solid rgb(84, 203, 186);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: rgb(61, 61, 61);
+    padding: 0.5rem 1rem 0.5rem 2rem;
+  }
+}
