@@ -23,13 +23,20 @@
     color: rgb(33, 187, 187);
   }
 
+  pre {
+    background-color: #37959c;
+    border: 0.5px solid #000000;
+    padding: 0.2rem;
+    overflow-x: auto;
+    /* 가로 스크롤 추가 */
+    border-radius: 5px;
+  }
+
   code {
-    padding: 3px 6px;
-    border: none;
-    border-radius: 3px;
-    background-color: #e9ecef;
-    font-size: 1.6rem;
-    font-family: "Pretendard", "Malgun Gothic", sans-serif;
+    font-family: monospace;
+    /* 고정폭 폰트 */
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 
   a {
@@ -45,5 +52,10 @@
     border-bottom-right-radius: 4px;
     background-color: rgb(61, 61, 61);
     padding: 0.5rem 1rem 0.5rem 2rem;
+  }
+
+  img {
+    display: 'block';
+    margin: '0 auto';
   }
 }

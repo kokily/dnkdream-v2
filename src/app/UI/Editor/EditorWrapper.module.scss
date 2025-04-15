@@ -1,7 +1,10 @@
+@import '@/libs/media.scss';
+
 .editor_wrapper {
   display: flex;
-  height: calc(100vh - 4rem);
   background-color: rgb(26, 26, 26);
+  position: relative;
+  height: 100vh;
 
   *::-webkit-scrollbar {
     width: 4px;
@@ -17,8 +20,13 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  width: 100%;
   min-width: 0;
   overflow: auto;
-  flex: 0.5;
+  flex: 1;
   background-color: rgb(15, 15, 15);
+
+  @include isMedium {
+    display: none;
+  }
 }

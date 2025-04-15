@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './../globals.scss';
+import ToastWrapper from '@/libs/ToastWrapper';
+import 'react-toastify/ReactToastify.css';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -26,6 +28,7 @@ export default function RootLayout({
     <html lang="ko" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
+        <ToastWrapper />
       </body>
     </html>
   );

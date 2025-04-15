@@ -1,10 +1,16 @@
+.white_paper {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1 !important;
+  overflow: auto;
+}
+
 .provider {
   margin: 2rem;
   display: flex;
   flex-direction: column;
-  min-width: 0;
-  flex: 0.5;
-  overflow-y: scroll;
+  height: calc(100vh - 4rem);
 
   .under {
     background: rgb(73, 80, 87);
@@ -26,11 +32,11 @@
 }
 
 .editor_body {
+  height: 100%;
   background-color: transparent;
 }
 
 .markdown {
-  height: auto;
   font-size: 1.125rem;
   line-height: 1.5;
   background-color: transparent;

@@ -14,11 +14,11 @@ export async function addPost(prevState: any, formData: FormData) {
 
   try {
     const postData: PostData = JSON.parse(postDataJSON);
-    const { title, body, thumbnail, tags } = postData;
+    const { title, body, tags } = postData;
 
     const result = await sql`
-      INSERT INTO post (title, body, thumbnail, tags)
-      VALUES (${title}, ${body}, ${thumbnail}, ${JSON.stringify(tags)})
+      INSERT INTO post (title, body , tags)
+      VALUES (${title}, ${body}, ${JSON.stringify(tags)})
       RETURNING id;
     `;
 
@@ -27,7 +27,7 @@ export async function addPost(prevState: any, formData: FormData) {
 
     return {
       message: '포스트가 성공적으로 저장되었습니다.',
-      postId: result.rows[0].id,
+      postId: result.rows[0].id as string,
     };
   } catch (err: any) {
     console.log('포스트 저장 실패: ', err);

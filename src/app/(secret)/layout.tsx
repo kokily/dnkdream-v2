@@ -1,4 +1,6 @@
 import '@/app/globals.scss';
+import ToastWrapper from '@/libs/ToastWrapper';
+import 'react-toastify/ReactToastify.css';
 
 export const metadata = {
   title: 'Next.js',
@@ -15,10 +17,13 @@ export default function RootLayout({
       <head>
         <link
           rel="stylesheet"
-          href="https://unpkg.com/react-quill@1.3.3/dist/quill.snow.css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <ToastWrapper />
+      </body>
     </html>
   );
 }

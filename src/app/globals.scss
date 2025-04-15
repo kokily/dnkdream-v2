@@ -49,6 +49,11 @@ body {
   }
 }
 
+.CodeMirror {
+  height: 100%;
+  min-height: 100%;
+}
+
 .ql-toolbar {
   border: none !important;
   color: red !important;

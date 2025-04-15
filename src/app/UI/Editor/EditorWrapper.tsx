@@ -1,6 +1,6 @@
 'use client';
 
-import { type ChangeEvent } from 'react';
+import { FormEvent, type ChangeEvent } from 'react';
 import dynamic from 'next/dynamic';
 import styles from './EditorWrapper.module.scss';
 import PreviewBody from './PreviewBody';
@@ -17,6 +17,9 @@ interface Props {
   onChangeBody: (text: string) => void;
   tags: string[];
   onChangeTags: (nextTages: string[]) => void;
+  onAddPost: (e: FormEvent<HTMLFormElement>) => void;
+  onExit: () => void;
+  onTempSave: () => void;
 }
 
 export default function EditorWrapper({
@@ -27,6 +30,7 @@ export default function EditorWrapper({
   onChangeBody,
   tags,
   onChangeTags,
+  onAddPost,
 }: Props) {
   return (
     <div className={styles.editor_wrapper}>
@@ -38,6 +42,7 @@ export default function EditorWrapper({
         onChangeBody={onChangeBody}
         tags={tags}
         onChangeTags={onChangeTags}
+        onAddPost={onAddPost}
       />
       <div className={styles.right}>
         <PreviewBody title={title} body={body} />

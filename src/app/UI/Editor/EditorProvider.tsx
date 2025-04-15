@@ -1,7 +1,14 @@
 'use client';
 
 import CodeMirror, { Editor, EditorFromTextArea } from 'codemirror';
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  ChangeEvent,
+  FormEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import EditorTitle from './EditorTitle';
 import EditorTags from './EditorTags';
 import Toolbar from './Toolbar';
@@ -13,6 +20,8 @@ import 'codemirror/mode/jsx/jsx';
 import 'codemirror/addon/display/placeholder';
 import AddLink from './AddLink';
 import { client } from '@/libs/client';
+import EditorFooter from './EditorFooter';
+import DragDrop from './DragDrop';
 
 interface Props {
   title: string;
@@ -22,6 +31,9 @@ interface Props {
   onChangeBody: (text: string) => void;
   tags: string[];
   onChangeTags: (nextTages: string[]) => void;
+  onAddPost: (e: FormEvent<HTMLFormElement>) => void;
+  onExit: () => void;
+  onTempSave: () => void;
 }
 
 type AddLinkType = {
@@ -40,6 +52,9 @@ export default function CodeMirrorProvider({
   onChangeBody,
   tags,
   onChangeTags,
+  onAddPost,
+  onExit,
+  onTempSave,
 }: Props) {
   const blockArea = useRef<HTMLDivElement>(null);
   const textArea = useRef<HTMLTextAreaElement | null>(null);
@@ -487,33 +502,40 @@ export default function CodeMirrorProvider({
   };
 
   return (
-    <div className={styles.provider} ref={blockArea}>
-      <div className={styles.editor_head}>
-        <EditorTitle
-          title={title}
-          onChange={onChangeTitle}
-          placeholder={placeholder}
-        />
-        <hr className={styles.under} />
-        <EditorTags tags={tags} onChangeTags={onChangeTags} />
-        <Toolbar onClick={onClickToolbar} />
-        {addLink.visible && (
-          <AddLink
-            top={addLink.top}
-            bottom={addLink.bottom}
-            left={addLink.left}
-            stickToRight={addLink.stickToRight}
-            onConfirm={onConfirmAddLink}
-            onClose={onCancelAddLink}
-            defaultValue=""
-          />
-        )}
-      </div>
-      <div className={styles.editor_body}>
-        <div className={styles.markdown} style={{ caretColor: 'red' }}>
-          <textarea ref={textArea} />
+    <>
+      <form className={styles.white_paper} onSubmit={onAddPost}>
+        <div className={styles.provider} ref={blockArea}>
+          <div className={styles.editor_head}>
+            <EditorTitle
+              title={title}
+              onChange={onChangeTitle}
+              placeholder={placeholder}
+            />
+            <hr className={styles.under} />
+            <EditorTags tags={tags} onChangeTags={onChangeTags} />
+            <Toolbar onClick={onClickToolbar} />
+          </div>
+
+          <div className={styles.editor_body}>
+            <div className={styles.markdown} style={{ caretColor: 'red' }}>
+              <textarea ref={textArea} />
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+        <EditorFooter onExit={onExit} onTempSave={onTempSave} />
+        <DragDrop onImageUpload={onImageUpload} />
+      </form>
+      {addLink.visible && (
+        <AddLink
+          top={addLink.top}
+          bottom={addLink.bottom}
+          left={addLink.left}
+          stickToRight={addLink.stickToRight}
+          onConfirm={onConfirmAddLink}
+          onClose={onCancelAddLink}
+          defaultValue=""
+        />
+      )}
+    </>
   );
 }
