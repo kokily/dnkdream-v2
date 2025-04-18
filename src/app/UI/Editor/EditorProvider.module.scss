@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: column;
   height: calc(100vh - 4rem);
+  padding-bottom: 4rem;
 
   .under {
     background: rgb(73, 80, 87);
@@ -34,12 +35,14 @@
 .editor_body {
   height: 100%;
   background-color: transparent;
+  padding-bottom: 4rem;
 }
 
 .markdown {
   font-size: 1.125rem;
   line-height: 1.5;
   background-color: transparent;
+  padding-bottom: 4rem;
 
   div {
     background-color: transparent;

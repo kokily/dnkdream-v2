@@ -1,4 +1,6 @@
 import '@/app/globals.scss';
+import QueryWrapper from '@/libs/QueryWrapper';
+import SessionWrapper from '@/libs/SessionWrapper';
 import ToastWrapper from '@/libs/ToastWrapper';
 import 'react-toastify/ReactToastify.css';
 
@@ -21,8 +23,12 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {children}
-        <ToastWrapper />
+        <SessionWrapper>
+          <QueryWrapper>
+            {children}
+            <ToastWrapper />
+          </QueryWrapper>
+        </SessionWrapper>
       </body>
     </html>
   );

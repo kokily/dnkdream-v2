@@ -3,8 +3,6 @@ import db from '@/libs/database';
 import { getQuery } from '@/libs/utils';
 
 export async function GET(req: NextRequest) {
-  const title = getQuery({ req, queryName: 'title' });
-  const tag = getQuery({ req, queryName: 'tag' });
   const cursor = getQuery({ req, queryName: 'cursor' });
 
   const cursorObj = cursor === '' ? undefined : { id: cursor };
@@ -13,16 +11,10 @@ export async function GET(req: NextRequest) {
   try {
     const posts = await db.post.findMany({
       where: {
-        title: {
-          contains: title,
-        },
-        tags: {
-          has: tag,
-        },
-        isPublished: true,
+        isPublished: false,
       },
-      skip: cursor !== '' ? 1 : 0,
       cursor: cursorObj,
+      skip: cursor !== '' ? 1 : 0,
       take: limit,
       orderBy: {
         createdAt: 'desc',
@@ -31,6 +23,6 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(posts);
   } catch (err: any) {
-    throw new Error(err.message);
+    throw new Error(err);
   }
 }

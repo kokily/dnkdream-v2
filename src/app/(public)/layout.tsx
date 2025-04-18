@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './../globals.scss';
 import ToastWrapper from '@/libs/ToastWrapper';
 import 'react-toastify/ReactToastify.css';
+import SessionWrapper from '@/libs/SessionWrapper';
+import QueryWrapper from '@/libs/QueryWrapper';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -27,8 +29,12 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-        <ToastWrapper />
+        <SessionWrapper>
+          <QueryWrapper>
+            {children}
+            <ToastWrapper />
+          </QueryWrapper>
+        </SessionWrapper>
       </body>
     </html>
   );

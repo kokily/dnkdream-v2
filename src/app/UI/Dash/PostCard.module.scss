@@ -1,0 +1,79 @@
+@import '@/libs/media.scss';
+
+.card_container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 3rem;
+  transition: 0.4s color;
+  cursor: pointer;
+  &:hover {
+    h2 {
+      color: #423ec8;
+    }
+    img {
+      filter: brightness(100%);
+    }
+  }
+  h2 {
+    margin-top: 6px;
+    cursor: pointer;
+    small {
+      font-size: 0.95rem;
+      color: #2040a9;
+    }
+  }
+}
+
+.card_thumbnail {
+    margin: 0;
+    border: none;
+    img {
+      filter: brightness(95%);
+    }
+  
+    @include isMedium {
+      height: auto;
+  
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+  
+  .card_tagbox {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  
+    @include isMedium {
+      margin-top: 0;
+    }
+  }
+  
+  .card_tag {
+    border: 1px solid #35d3b1;
+    border-radius: 15px;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    background: #35d3b1;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.2s all;
+    &:hover {
+      color: #35d3b1;
+      background-color: #fff;
+    }
+    margin-right: 5px;
+  
+    @include isMedium {
+      margin-left: 0;
+    }
+  }
+  
+  .card_datebox {
+    margin-top: 14px;
+    color: #000000;
+  }

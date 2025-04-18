@@ -18,3 +18,13 @@ export function isEmptyOrSpace(text: string) {
 
   return isEmpty(trim(text.replace(/\s/g, '')));
 }
+
+export function findImgInMarkdown(markdown: string): string | null {
+  const imageRegex = /!\[.*?\]\((.*?)\)/;
+  const match = markdown.match(imageRegex);
+  if (match && match[1]) {
+    return match[1];
+  } else {
+    return null;
+  }
+}

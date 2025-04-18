@@ -5,6 +5,14 @@ const nextConfig: NextConfig = {
   experimental: {
     nextScriptWorkers: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

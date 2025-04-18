@@ -31,6 +31,8 @@ export default function EditorWrapper({
   tags,
   onChangeTags,
   onAddPost,
+  onExit,
+  onTempSave,
 }: Props) {
   return (
     <div className={styles.editor_wrapper}>
@@ -43,6 +45,8 @@ export default function EditorWrapper({
         tags={tags}
         onChangeTags={onChangeTags}
         onAddPost={onAddPost}
+        onExit={onExit}
+        onTempSave={onTempSave}
       />
       <div className={styles.right}>
         <PreviewBody title={title} body={body} />

@@ -1,22 +1,23 @@
 'use client';
 
 import type { ChangeEvent, FormEvent } from 'react';
-import { useActionState, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { addPost } from '@/libs/actions';
 import EditorWrapper from '@/app/UI/Editor/EditorWrapper';
-import Popup from '@/app/UI/Common/Popup';
 import useHotKey from '@/libs/hooks';
 import { toast } from 'react-toastify';
+import { useMutation } from '@tanstack/react-query';
+import { tempSaveAPI } from '@/libs/client';
 
 export default function WritePostPage() {
   const router = useRouter();
 
+  const [tempId, setTempId] = useState('');
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [tags, setTags] = useState<string[]>([]);
 
-  const [state, formAction] = useActionState(addPost, null);
+  const tempSaveMutate = useMutation({ mutationFn: tempSaveAPI });
 
   const onChangeTitle = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
@@ -32,16 +33,6 @@ export default function WritePostPage() {
 
   const onAddPost = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const postData: PostData = {
-      title,
-      body,
-      tags,
-    };
-
-    const formData = new FormData(e.currentTarget);
-    formData.append('postData', JSON.stringify(postData));
-    formAction(formData);
   };
 
   const onExit = () => {
@@ -49,14 +40,55 @@ export default function WritePostPage() {
   };
 
   const onTempSave = async () => {
-    if (!title || !!body) {
+    if (!title || !body) {
       toast.error('제목 또는 내용이 비어있습니다.');
       return;
     }
 
-    // 계획: Temp 모델을 Post와 같이 만들어서 작성일시를 기준으로 정렬
-    // Post 모델에 isPublished: boolean을 두어서 임시 저장은 Temp로 그 문서를 퍼블리싱하면 posts로 나오게
-    // 또한 Temp 문서를 퍼블리싱하면 그 Temp를 삭제하고 Post로 저장하면서 퍼블리싱
+    if (tags.length < 1) {
+      toast.error('태그는 최소 한 개 이상 작성해주세요.');
+      return;
+    }
+
+    if (!tempId) {
+      await tempSaveMutate.mutateAsync(
+        {
+          title,
+          body,
+          tags,
+        },
+        {
+          onSuccess: (data) => {
+            toast.success(`임시저장 완료: ${data.title}`);
+            setTempId(data.id);
+            return;
+          },
+          onError: (err) => {
+            toast.error(err.message);
+            return;
+          },
+        },
+      );
+    } else {
+      await tempSaveMutate.mutateAsync(
+        {
+          id: tempId,
+          title,
+          body,
+          tags,
+        },
+        {
+          onSuccess: (data) => {
+            toast.success(`임시저장 완료: ${data.title}`);
+            return;
+          },
+          onError: (err) => {
+            toast.error(err.message);
+            return;
+          },
+        },
+      );
+    }
   };
 
   useHotKey(() => onTempSave());
@@ -75,7 +107,6 @@ export default function WritePostPage() {
         onExit={onExit}
         onTempSave={onTempSave}
       />
-      {state?.message && <Popup visible>{state.message}</Popup>}
     </>
   );
 }
