@@ -16,7 +16,7 @@ export default function DashBoardPage() {
 
   const [search, setSearch] = useState('');
 
-  const { data, fetchNextPage, refetch } = useInfiniteQuery({
+  const { data, fetchNextPage, refetch, isLoading } = useInfiniteQuery({
     initialPageParam: '',
     queryKey: ['dashboards'],
     queryFn: ({ pageParam }) =>
@@ -63,6 +63,7 @@ export default function DashBoardPage() {
         onChange={onChange}
         onSearch={onSearch}
         onUpdatePost={onUpdatePost}
+        loading={isLoading}
       />
       <div ref={setTarget} />
     </>

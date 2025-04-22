@@ -10,6 +10,11 @@ export const client = axios.create({
   withCredentials: true,
 });
 
+type PostType = {
+  id: string;
+  isPublished: boolean;
+}
+
 // Add Post
 type AddPostType = TempPostType;
 
@@ -29,6 +34,7 @@ export async function addPostAPI(payload: AddPostType) {
 // Temp Save Post
 type TempPostType = {
   id?: string;
+  isPublished: boolean;
 } & PostData;
 
 export async function tempSaveAPI(payload: TempPostType) {

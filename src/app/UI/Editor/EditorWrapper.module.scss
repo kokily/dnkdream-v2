@@ -1,4 +1,4 @@
-@import '@/libs/media.scss';
+@use '@/libs/media.scss' as media;
 
 .editor_wrapper {
   display: flex;
@@ -26,7 +26,7 @@
   flex: 1;
   background-color: rgb(15, 15, 15);
 
-  @include isMedium {
+  @include media.isMedium {
     display: none;
   }
 }

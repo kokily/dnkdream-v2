@@ -1,43 +1,43 @@
 import type { Post } from '@prisma/client';
 import styles from './PostCard.module.scss';
-import { findImgInMarkdown } from '@/libs/utils';
-import Image from 'next/image';
+import { findImgInMarkdown, sliceText } from '@/libs/utils';
 
 interface Props {
   post: Post;
+  onUpdatePost: (id: string) => void;
 }
 
-export default function PostCard({ post }: Props) {
+export default function PostCard({ post, onUpdatePost }: Props) {
   const thumbnail = findImgInMarkdown(post.body);
 
   return (
-    <div className={styles.card_container}>
-      <div onClick={() => {}} className={styles.card_thumbnail}>
+    <div
+      className={styles.card_container}
+      onClick={() => onUpdatePost(post.id)}
+    >
+      <div className={styles.card_layout}>
         {thumbnail === null ? (
-          <div>{post.title.slice(0, 1)}</div>
+          <div className={styles.card_non_thumbnail}>
+            <h1>{post.title.slice(0, 3)}</h1>
+          </div>
         ) : (
-          <Image
+          <img
+            className={styles.card_thumbnail}
             src={thumbnail}
-            alt="썸네일"
-            width={650}
-            height={360}
-            priority
+            alt={`${post.title} 썸네일`}
           />
         )}
-      </div>
-
-      <h2 onClick={() => {}}>{post.title}</h2>
-
-      <div className={styles.card_tagbox}>
-        {post.tags.map((tag) => (
-          <div className={styles.card_tag} key={tag}>
-            #{tag}
-          </div>
-        ))}
-      </div>
-
-      <div className={styles.card_datebox}>
-        {post.createdAt.toString()} 작성
+        <div className={styles.card_content}>
+          <h4 className={styles.card_title} title={post.title}>
+            {sliceText(post.title, 20)}
+          </h4>
+          <p>{new Date(post.createdAt).toLocaleDateString()} 작성</p>
+          <p className={styles.card_tags}>
+            {post.tags.slice(0, 3).map((tag) => (
+              <span key={tag}>#{tag}</span>
+            ))}
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,52 @@
+@use '@/libs/media.scss' as media;
+
+.admin_header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #202020;
+  position: fixed;
+  z-index: 9999;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.admin_contents {
+  display: flex;
+  align-items: center;
+  width: 1200px;
+  height: 56px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  position: relative;
+
+  @include media.isMedium {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.admin_logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  color: #ffffff;
+  transition: 0.2s all;
+
+  &:hover {
+    color: #bbe7d5;
+  }
+}
+
+.space {
+  flex-grow: 1;
+}
+
+.menu_button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  color: white;
+  font-weight: bold;
+}

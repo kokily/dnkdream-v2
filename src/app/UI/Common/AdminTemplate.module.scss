@@ -1,0 +1,22 @@
+@use '@/libs/media.scss' as media;
+
+.page_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page_layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.page_child_box {
+  display: block;
+  width: 100%;
+  margin-top: 208px;
+  margin-bottom: 5rem;
+  max-width: 1110px;
+}

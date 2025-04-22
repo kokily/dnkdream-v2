@@ -28,3 +28,11 @@ export function findImgInMarkdown(markdown: string): string | null {
     return null;
   }
 }
+
+export function sliceText(text: string, maxLength: number = 15): string {
+  if (text.length <= maxLength) {
+    return text;
+  } else {
+    return text.slice(0, maxLength) + '...';
+  }
+}

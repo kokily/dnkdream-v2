@@ -1,11 +1,5 @@
-export default async function UpdatePostPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
+'use client';
 
-  console.log(id);
-
+export default function UpdatePostPage({ params }: { params: { id: string } }) {
   return <div>UpdatePostPage</div>;
 }

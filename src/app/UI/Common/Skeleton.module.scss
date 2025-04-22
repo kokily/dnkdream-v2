@@ -1,0 +1,25 @@
+.skeleton_container {
+  height: var(--dynamic-height, auto);
+  display: block;
+  position: relative;
+  padding: 5px 5px 0 5px;
+  flex: 0 0 33.33333%;
+  min-width: 0;
+  max-width: 33.33333%;
+  user-select: none;
+  transition: all 0.12s;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  word-wrap: break-word;
+  border-radius: 0.25rem;
+  animation: skeleton-loading 0.4s linear infinite alternate;
+
+  @keyframes skeleton-loading {
+    0% {
+      background-color: hsl(200, 20%, 80%);
+    }
+
+    100% {
+      background-color: hsl(200, 20%, 95%);
+    }
+  }
+}

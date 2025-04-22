@@ -56,6 +56,7 @@ export default function WritePostPage() {
           title,
           body,
           tags,
+          isPublished: false,
         },
         {
           onSuccess: (data) => {
@@ -76,6 +77,7 @@ export default function WritePostPage() {
           title,
           body,
           tags,
+          isPublished: false,
         },
         {
           onSuccess: (data) => {

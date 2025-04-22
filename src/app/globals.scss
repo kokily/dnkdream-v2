@@ -18,13 +18,18 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: black;
+  background-color: #121212;
   color: white;
 }
 
 :root {
   --fade-in-animation: fadeIn 1s ease-in-out;
   --slide-up-from-bottom: slideUpFromBottom 1s ease-in-out;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 @keyframes fadeIn {

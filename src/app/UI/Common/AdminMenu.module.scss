@@ -1,0 +1,38 @@
+@use '@/libs/utils.scss' as utils;
+@use '@/libs/colors.scss' as color;
+
+.admin_menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.22rem;
+  z-index: 999999;
+  background-color: color.$background;
+  border: 1px solid #5a5a5a;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: 0.14s transform;
+  opacity: 0;
+  transform: scale(0.5);
+
+  @include utils.shadow;
+
+  &.visible {
+    color: silver;
+    opacity: 1 !important;
+    transform: scale(1) !important;
+  }
+}
+
+.admin_menu_layout {
+  position: relative;
+  z-index: 5;
+  width: 12rem;
+}
+
+.split {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  height: 2px;
+  background: linear-gradient(to right, #5a5a5a, #333333);
+}
